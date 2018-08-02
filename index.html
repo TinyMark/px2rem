@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<title>px转rem</title>
+	<meta name="description" content="px转rem">
+	<meta name="author" content="tinymark">
+	<link href="https://cdn.bootcss.com/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+		body {
+			font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica;
+		}
+
+		ul {
+			list-style: none;
+		}
+
+		textarea {
+			width: 532px;
+			height: 500px;
+		}
+
+		h2 {
+			text-align: center;
+		}
+
+		.box {
+			width: 534px;
+			float: left;
+		}
+
+		.before {}
+
+		.after {
+			margin-left: 200px;
+		}
+
+		.btn-group {
+			position: absolute;
+			width: 100px;
+			top: 260px;
+			left: 50%;
+			margin-left: -50px;
+			text-align: center;
+		}
+
+		.warp {
+			position: relative;
+			margin: 0 auto;
+			width: 1280px;
+		}
+
+		.btn {
+			display: block;
+			border-radius: 3px;
+			text-decoration: none;
+			height: 30px;
+			line-height: 30px;
+			opacity: 0.9;
+		}
+
+		.btn:hover {
+			opacity: 0.7;
+		}
+
+		.btn:active {
+			opacity: 1;
+		}
+
+		.info {
+			float: right;
+			margin: 20px 0;
+		}
+
+		.form {
+			overflow: hidden;
+		}
+
+		.select-screen {
+			overflow: hidden;
+		}
+
+		.select-screen ul {
+			overflow: hidden;
+			padding: 0;
+			margin: 0;
+		}
+
+		.select-screen li {
+			float: left;
+		}
+
+		.fl {
+			float: left;
+		}
+
+		.fr {
+			float: right;
+		}
+
+		li label {
+			padding: 4px 4px;
+			cursor: pointer;
+			-webkit-user-select: none;
+		}
+	</style>
+	<style type="text/css">
+		@keyframes fadeInOpacity {
+			0% {
+				opacity: 0
+			}
+			to {
+				opacity: 1
+			}
+		}
+
+		:hover>*>.fbvd--wrapper {
+			animation-name: fadeInOpacity;
+			animation-duration: .3s;
+			opacity: 1
+		}
+
+		.fbvd--wrapper {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			opacity: 0;
+			text-align: center;
+			margin: 0;
+			z-index: 5
+		}
+
+		.fbvd--wrapper a {
+			background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iIzRiNGY1NiIgZD0iTTggMTUuNWw3LjUtNy41aC00LjV2LThoLTZ2OGgtNC41eiI+PC9wYXRoPjwvc3ZnPg==) no-repeat 3px 4.55px;
+			background-color: #fff;
+			display: inline-block;
+			font: 700 14px Helvetica, Arial, sans-serif;
+			color: #4b4f56;
+			text-decoration: none;
+			vertical-align: middle;
+			padding: 0px 8px 0px;
+			margin-right: 8px;
+			border-radius: 2px;
+			line-height: 22px;
+			padding-left: 19px;
+			border: 1px solid #e7e7e7;
+			background-size: 13px
+		}
+
+		.fbvd--wrapper a:last-child {
+			margin-right: 0
+		}
+
+		.fbvd--wrapper a:hover {
+			text-decoration: none
+		}
+
+		.fbvd--wrapper a:focus {
+			box-shadow: 0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15);
+			outline: none
+		}
+
+		.fbvd--wrapper b {
+			font-size: 13px;
+			position: relative;
+			top: 1px;
+			color: #3b5998;
+			font-weight: 400
+		}
+	</style>
+	<style type="text/css">
+		#yddContainer {
+			display: block;
+			font-family: Microsoft YaHei;
+			position: relative;
+			width: 100%;
+			height: 100%;
+			top: -4px;
+			left: -4px;
+			font-size: 12px;
+			border: 1px solid
+		}
+
+		#yddTop {
+			display: block;
+			height: 22px
+		}
+
+		#yddTopBorderlr {
+			display: block;
+			position: static;
+			height: 17px;
+			padding: 2px 28px;
+			line-height: 17px;
+			font-size: 12px;
+			color: #5079bb;
+			font-weight: bold;
+			border-style: none solid;
+			border-width: 1px
+		}
+
+		#yddTopBorderlr .ydd-sp {
+			position: absolute;
+			top: 2px;
+			height: 0;
+			overflow: hidden
+		}
+
+		.ydd-icon {
+			left: 5px;
+			width: 17px;
+			padding: 0px 0px 0px 0px;
+			padding-top: 17px;
+			background-position: -16px -44px
+		}
+
+		.ydd-close {
+			right: 5px;
+			width: 16px;
+			padding-top: 16px;
+			background-position: left -44px
+		}
+
+		#yddKeyTitle {
+			float: left;
+			text-decoration: none
+		}
+
+		#yddMiddle {
+			display: block;
+			margin-bottom: 10px
+		}
+
+		.ydd-tabs {
+			display: block;
+			margin: 5px 0;
+			padding: 0 5px;
+			height: 18px;
+			border-bottom: 1px solid
+		}
+
+		.ydd-tab {
+			display: block;
+			float: left;
+			height: 18px;
+			margin: 0 5px -1px 0;
+			padding: 0 4px;
+			line-height: 18px;
+			border: 1px solid;
+			border-bottom: none
+		}
+
+		.ydd-trans-container {
+			display: block;
+			line-height: 160%
+		}
+
+		.ydd-trans-container a {
+			text-decoration: none;
+		}
+
+		#yddBottom {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 22px;
+			line-height: 22px;
+			overflow: hidden;
+			background-position: left -22px
+		}
+
+		.ydd-padding010 {
+			padding: 0 10px
+		}
+
+		#yddWrapper {
+			color: #252525;
+			z-index: 10001;
+			background: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);
+		}
+
+		#yddContainer {
+			background: #fff;
+			border-color: #4b7598
+		}
+
+		#yddTopBorderlr {
+			border-color: #f0f8fc
+		}
+
+		#yddWrapper .ydd-sp {
+			background-image: url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ydd-sprite.png)
+		}
+
+		#yddWrapper a,
+		#yddWrapper a:hover,
+		#yddWrapper a:visited {
+			color: #50799b
+		}
+
+		#yddWrapper .ydd-tabs {
+			color: #959595
+		}
+
+		.ydd-tabs,
+		.ydd-tab {
+			background: #fff;
+			border-color: #d5e7f3
+		}
+
+		#yddBottom {
+			color: #363636
+		}
+
+		#yddWrapper {
+			min-width: 250px;
+			max-width: 400px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="warp">
+		<div class="form">
+			<div class="before box">
+				<h2>转换前的代码</h2>
+				<textarea name="" id="before"></textarea>
+				<div class="select-screen">
+					<div class="control-group fl">
+						<label class="control-label" for="baseWidth">
+							<i class="icon-picture"></i>设计稿宽度</label>
+						<div class="controls">
+							<input type="number" id="baseWidth" value="640">
+						</div>
+					</div>
+					<div class="control-group fr">
+						<label class="control-label" for="baseFont">
+							<i class="icon-font"></i>基础字体值</label>
+						<div class="controls">
+							<input type="number" id="baseFont" placeholder="基础字体值" value="20">
+						</div>
+					</div>
+
+				</div>
+				<div class="select-screen">
+					<p>
+						<label class="checkbox">
+							<input type="checkbox" name="media" id="mediaCheck" value="1" checked="">
+							<span class="">自动生成media，要兼容的分辨率：</span>
+						</label>
+					</p>
+					<ul>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="1080" checked="">
+								<span class="label label-important">1080</span>
+							</label>
+						</li>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="960" checked="">
+								<span class="label label-important">960</span>
+							</label>
+						</li>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="800" checked="">
+								<span class="label label-important">800</span>
+							</label>
+						</li>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="720" checked="">
+								<span class="label label-important">720</span>
+							</label>
+						</li>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="640" checked="">
+								<span class="label label-important">640</span>
+							</label>
+						</li>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="600" checked="">
+								<span class="label label-important">600</span>
+							</label>
+						</li>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="540" checked="">
+								<span class="label label-important">540</span>
+							</label>
+						</li>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="480" checked="">
+								<span class="label label-important">480</span>
+							</label>
+						</li>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="414" checked="">
+								<span class="label label-important">414</span>
+							</label>
+						</li>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="400" checked="">
+								<span class="label label-important">400</span>
+							</label>
+						</li>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="375" checked="">
+								<span class="label label-important">375</span>
+							</label>
+						</li>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="360" checked="">
+								<span class="label label-important">360</span>
+							</label>
+						</li>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="320" checked="">
+								<span class="label label-important">320</span>
+							</label>
+						</li>
+						<li>
+							<label class="checkbox">
+								<input type="checkbox" name="screen" value="240" checked="">
+								<span class="label label-important">240</span>
+							</label>
+						</li>
+					</ul>
+				</div>
+				<div class="select-screen">
+					<p>
+						<label class="checkbox">
+							<input type="checkbox" name="ie8" value="1080" id="ie8Code">是否要兼容IE8-</label>
+					</p>
+				</div>
+				<div class="select-screen">
+					<p>
+						<label class="checkbox">
+							<input type="checkbox" name="borderFilter" value="1" id="borderFilter" checked="">不处理border</label>
+					</p>
+				</div>
+
+			</div>
+			<div class="btn-group">
+				<p>
+					<a href="javascript:" onclick="changeToRem()" class="btn btn-primary">px转rem</a>
+				</p>
+				<p>
+					<a href="javascript:" onclick="changeToPx()" class="btn btn-inverse">rem转px</a>
+				</p>
+			</div>
+			<div class="after box">
+				<h2>转换后的代码</h2>
+				<textarea name="" id="after"></textarea>
+			</div>
+		</div>
+		
+	</div>
+	<script type="tepl" id="media">
+		@media only screen and (max-width:
+		<%=screenWidth%>px), only screen and (max-device-width:
+			<%=screenWidth%>px) {\n html,body {\n font-size:
+				<%=fontSize%>px;\n }\n }\n
+	</script>
+	<script type="text/javascript">
+		var cache = {};
+
+		function $$(id) {
+			return document.getElementById(id) || null;
+		}
+		//解析模板
+		function tmpl(str, data) {
+			// Figure out if we're getting a template, or if we need to
+			// load the template - and be sure to cache the result.
+			var fn = !/\W/.test(str) ?
+				cache[str] = cache[str] ||
+				tmpl(document.getElementById(str).innerHTML) :
+				// Generate a reusable function that will serve as a template
+				// generator (and which will be cached).
+				new Function("obj",
+					"var p=[],print=function(){p.push.apply(p,arguments);};" +
+
+					// Introduce the data as local variables using with(){}
+					"with(obj){p.push('" +
+
+					// Convert the template into pure JavaScript
+					str
+					.replace(/[\r\t\n]/g, " ")
+					.split("<%").join("\t")
+					.replace(/((^|%>)[^\t]*)'/g, "$1\r")
+					.replace(/\t=(.*?)%>/g, "',$1,'")
+					.split("\t").join("');")
+					.split("%>").join("p.push('")
+					.split("\r").join("\\'") +
+					"');}return p.join('');");
+			// Provide some basic currying to the user
+			return data ? fn(data) : fn;
+		}
+		var base = $$('baseFont').value;
+		var baseWidth = $$('baseWidth').value;
+		//自动添加cssmedai
+		function createMedia() {
+			var tmp = '';
+			var tpl = tmpl($$('media').innerHTML);
+			var screens = document.getElementsByName('screen');
+			for (var i = 0; i < screens.length; i++) {
+				if (!screens[i].checked) {
+					continue;
+				}
+				tmp += tpl({
+					screenWidth: screens[i].value,
+					fontSize: (screens[i].value / baseWidth) * base
+				});
+			};
+			$$('after').value = tmp + $$('after').value;
+		}
+		//将px转换成rem
+		function changeToRem() {
+			base = $$('baseFont').value;
+			baseWidth = $$('baseWidth').value;
+			var after = '',
+				tmp = [],
+				reg = new RegExp(":[^:]*px([^;/])*;", "g"),
+				before = _addSemicolon($$('before').value);
+			//.replace(/\s/g,'')
+			var pxArray = before.match(reg);
+			if (!pxArray) {
+				return;
+			}
+			for (var i = 0; i < pxArray.length; i++) {
+				tmp = before.split(pxArray[i]);
+				if ($$('borderFilter').checked && _filterBorder(tmp[0])) {
+					continue;
+				}
+				after += tmp[0];
+				if ($$('ie8Code').checked) {
+					after += pxArray[i];
+					after += tmp[0].substr(Math.max(tmp[0].lastIndexOf(';'), tmp[0].lastIndexOf('{')) + 1);
+				}
+				after += getRem(pxArray[i], base);
+				before = before.replace(tmp[0], '').replace(pxArray[i], '');
+			}
+			$$('after').value = after + before;
+			createMedia();
+		}
+		//末尾自动添加分号
+		function _addSemicolon(str) {
+			var reg = new RegExp(/([0-9]+)([^;{}])?}/g);
+			return str.replace(reg, "$1$2;}");
+		}
+
+		function _filterBorder(str) {
+			if (str.substr(-6) === 'border' ||
+				str.substr(-12) === 'border-width' ||
+				str.substr(-10) === 'border-top' ||
+				str.substr(-11) === 'border-left' ||
+				str.substr(-12) === 'border-right' ||
+				str.substr(-13) === 'border-bottom' ||
+				str.substr(-13) === 'border-radius'
+			) {
+				return true;
+			}
+			return false;
+		}
+		//rem转px
+		function changeToPx() {
+			var after = '',
+				tmp = [],
+				reg = new RegExp(":.*rem", "g"),
+				before = $$('before').value;
+			var pxArray = before.match(reg);
+			if (!pxArray) {
+				return;
+			}
+			for (var i = 0; i < pxArray.length; i++) {
+				tmp = before.split(pxArray[i]);
+				after += tmp[0] + getPx(pxArray[i], base);
+				before = before.replace(tmp[0], '').replace(pxArray[i], '');
+			};
+			$$('after').value = after + before;
+		}
+		//获取rem值
+		function getRem(px, base) {
+			var reg = new RegExp("[0-9]+([.]{1}[0-9]+){0,1}", "g"),
+				rem = px;
+			var tmp = px.match(reg);
+			for (var i = 0; i < tmp.length; i++) {
+				if (Number(tmp[i]) === 0 || px.indexOf(tmp[i] + 'px') < 0) {
+					continue; //0不做处理,数字后面不是px不做处理
+				}
+				rem = rem.replace(tmp[i] + 'px', (Number(tmp[i]) / base) + 'rem');
+			}
+			return rem;
+		}
+		//获取px值
+		function getPx(rem, base) {
+			var reg = new RegExp("[0-9]+([.][0-9]+)?", "g"),
+				px = rem;
+			var tmp = rem.match(reg);
+			for (var i = 0; i < tmp.length; i++) {
+				px = px.replace(tmp[i] + 'rem', (Number(tmp[i]) * base) + 'px');
+			};
+			return px;
+		}
+		$$('mediaCheck').addEventListener('click', function () {
+			var screens = document.getElementsByName('screen');
+			if (this.checked) {
+				_changeChecked(true);
+			} else {
+				_changeChecked(false);
+			}
+
+			function _changeChecked(op) {
+				for (var i = 0; i < screens.length; i++) {
+					screens[i].checked = op;
+				};
+			}
+		});
+	</script>
+</body>
+</html>
